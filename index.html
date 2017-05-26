@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="css/style_sheet.css" rel='stylesheet' type='text/css'/>
+    <link href="css/responsive_style.css" rel='stylesheet' type='text/css'/>
+    <script src="js/utils.js"></script>
+    <meta name="viewport" content="width=device-width, user-scalable=no"/>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <title>University events app</title>
+
+
+  </head>
+
+  <body onload="addEventListeners()">
+    <script type="text/javascript" src="cordova.js"></script>
+
+    <!-- University logo -->
+     <div class="uni_logo">
+       <img src="img/uoe_logo.png" width="120px" height="49px">
+     </div>
+
+      <ul class="topnav" id="myTopnav">
+        <img class="uni_logo_mobile" id="uni_logo_mobile" src="img/uoe_mobile.gif" width="120px" height="49px">
+        <li class="firstli"></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="chart.html">Event Analytics</a></li>
+        <li><a href="#">College events</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="settings.html">Settings</a></li>
+        <li class="icon">
+          <a href="javascript:void(0);" onclick="showResponsiveMenu()">&#9776;</a>
+       </li>
+     </ul>
+
+
+
+      <div class="content">
+        <div class="introContainer" id="introContainer"><p class="introText">The events app shows a variety of different news and events happening at the University of Exeter in 2017</p></div>
+        <div class="panel-header" id="pheader"><h1>Events role up</h1></div>
+        <div class="panel-body">
+
+          <div id="buttonParent">
+            <button id="eventsButton" onclick="loadEvents()" class="actionButton">Get events...</button>
+          </div>
+
+          <div id="content"></div>
+
+        <!--
+          <div class= "form">
+          <form action="events.php" method="post">
+            <p>Enter your name:</p>
+            <input type="text" name="myname" value="">
+
+            <p>Select event type:</p>
+            <select name="type">
+              <option value="Academic">Academic</option>
+              <option value="Sport">Sport</option>
+              <option value="Social">Social</option>
+              <option value="All">All</option>
+            </select>
+
+            <p>Select event location:</p>
+            <select name="location">
+              <option value="Forum">Forum</option>
+              <option value="Sports Hall">Sports Hall</option>
+              <option value="Great Hall">Great Hall</option>
+              <option value="St Lukes Pool">St Lukes Pool</option>
+              <option value="Blue Room">Blue Room</option>
+              <option value="All">All</option>
+            </select>
+            <p> Select event date:</p>
+            <input type="date" name="date">
+
+            <input type="submit" value="Submit">
+
+          </form>
+        </div>
+
+        -->
+        </div>
+      </div>
+
+      <div id="footer"><p>Footer text</p>
+      </div>
+
+  </body>
+</html>

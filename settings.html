@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="css/style_sheet.css" rel='stylesheet' type='text/css'/>
+    <link href="css/responsive_style.css" rel='stylesheet' type='text/css'/>
+    <script src="js/utils.js"></script>
+    <meta name="viewport" content="width=device-width, user-scalable=no"/>
+    <title>University events app</title>
+
+
+  </head>
+
+  <body onload="addEventListeners()">
+    <script type="text/javascript" src="cordova.js"></script>
+
+    <!-- University logo -->
+     <div class="uni_logo">
+       <img src="img/uoe_logo.png" width="120px" height="49px">
+     </div>
+
+     <ul class="topnav" id="myTopnav">
+       <img class="uni_logo_mobile" id="uni_logo_mobile" src="img/uoe_mobile.gif" width="120px" height="49px">
+       <li class="firstli"></li>
+       <li><a href="index.html">Home</a></li>
+       <li><a href="chart.html">Event Analytics</a></li>
+       <li><a href="#">College events</a></li>
+       <li><a href="#about">About</a></li>
+       <li><a href="settings.html">Settings</a></li>
+       <li class="icon">
+         <a href="javascript:void(0);" onclick="showResponsiveMenu()">&#9776;</a>
+      </li>
+    </ul>
+
+
+
+
+      <div class="content">
+        <div class="introContainer" id="introContainer"><p class="introText">The events app shows a variety of different news and events happening at the University of Exeter. Click or tap the menu options to see events for a particular category.
+      A selection of news and events is shown below.</p></div>
+        <div class="panel-header" id="pheader"><h1>View Settings</h1></div>
+        <div class="panel-body">
+
+          <div class= "form">
+            <p>Change navigation colour:</p>
+            <select name="nav" id="nav" onchange="changeTopnav()">
+              <option value="#4499e3">Blue</option>
+              <option value="red">Red</option>
+              <option value="green">Green</option>
+              <option value="pink">Pink</option>
+              <option value="yellow">Yellow</option>
+              <option value="black">Black</option>
+              <option value="orange">Orange</option>
+            </select>
+            <p>Change heading colour:</p>
+            <select name="heading" id="heading" onchange="changeHeading()">
+              <option value="#4499e3">Blue</option>
+              <option value="red">Red</option>
+              <option value="green">Green</option>
+              <option value="pink">Pink</option>
+              <option value="yellow">Yellow</option>
+              <option value="black">Black</option>
+              <option value="orange">Orange</option>
+            </select>
+            <br />
+            <div id="radioParent">
+              <input type="radio" id="show" name="infoText" value="block" checked>Show info text<br>
+              <input type="radio" id="hide" name="infoText" value="none" >Hide into text<br>
+            </div>
+          <button id="save" onclick="savePreferences()">Save</button>
+          <button id="remove" onclick="removePreferences()">Remove</button>
+
+        </div>
+
+        </div>
+      </div>
+
+      <div id="footer"><p>Footer text</p>
+      </div>
+  </body>
+</html>

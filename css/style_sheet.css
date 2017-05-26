@@ -1,0 +1,236 @@
+
+body {
+	background-color: white;
+	width: 90% ;
+	margin-left: auto;
+  margin-right: auto;
+	padding: 10px;
+  font-size: 14px ;
+  font-family:  'Open sans','Droid Sans', Helvetica, Arial, sans-serif;
+}
+
+.introContainer{
+	margin-top: 10px ;
+	background-color: #E5E4E2 ;
+	padding: 10px ;
+}
+
+.introText{
+	font-family: 'Open Sans' ;
+	font-size: 18px ;
+	color: #616D7E;
+	font-weight: bold ;
+	display: block ;
+}
+
+
+a {
+    text-decoration:none ;
+    color: #0099FF ;
+    font-weight: bold;
+    font-family: 'Droid Sans', Helvetica, Arial, sans-serif;
+}
+
+a:hover
+{
+    text-decoration:underline ;
+    color: blue ;
+}
+
+/* Remove margins and padding from the list, and add a black background color */
+.topnav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+		margin-top: 55px ;
+
+}
+
+/* Float the list items side by side */
+.topnav li {
+	float: left;
+}
+
+/* Style the links inside the list items */
+.topnav li a {
+    display: inline-block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+		padding-top: 10px ;
+    text-decoration: none;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+/* Change background color of links on hover */
+.topnav li a:hover {
+	background-color: #555;
+}
+
+/* Hide the list item that contains the link that should open and close the topnav on small screens */
+.topnav li.icon {
+	display: none;
+}
+
+.uni_logo {
+    float:left ;
+    border: none;
+}
+
+
+.uni_logo_mobile {
+		display:none ;
+    float:left ;
+}
+
+.content {
+    padding-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+#content {
+	margin-top: 40px
+}
+
+.list {
+font-family:sans-serif;
+margin:0;
+padding:20px 0 0;
+}
+
+.list > li {
+display:block;
+background-color: #eee;
+padding:10px;
+padding-bottom:5px;
+box-shadow: inset 0 1px 0 #fff;
+}
+
+ul li a {
+ display:block;
+}
+
+.list li:hover {
+    background:#C0C0C0 ;
+}
+
+
+/* panel styles */
+.panel-header {
+	height: 23px;
+	margin-top:20px ;
+	padding: 5px 6px;
+	background-color: #4499e3;
+	font-size: 14px;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+
+.panel-header h1 {
+	margin-left: 6px;
+	display: inline;
+	font-size: 18px;
+    color: white;
+}
+
+.panel-header .panel-icons {
+	float: right;
+}
+
+.panel-header .panel-icons a {
+	margin-left: 6px;
+}
+
+.panel-body {
+	border: solid 1px #ccc;
+	margin-bottom: 0px;
+
+}
+
+input[type=text], select {
+    width: 80%;
+    padding: 12px 20px;
+
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+		display: block;
+}
+input[type=date] {
+    width: 80%;
+    padding: 12px 20px;
+
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+		display: block;
+}
+
+input[type=submit] {
+    width: 40%;
+    background-color: #1a1a1a;
+    color: white;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+		margin-top: 30px ;
+		display: block;
+}
+
+input[type=submit]:hover {
+
+    background-color: #737373;
+}
+
+.actionButton {
+    width: 300px;
+    background-color: #1a1a1a;
+    color: white;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+		margin-top: 30px ;
+		display: block;
+		margin-left: auto;
+    margin-right: auto;
+}
+.actionButton:hover {
+    background-color: #737373;
+}
+
+#getXML {
+	background-color: green ;
+}
+
+.form {
+
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+
+
+#footer {
+	margin-top: 140px;
+	border-top: 1px solid grey;
+	color: #333;
+	padding: 15px 0;
+}
+
+#footer a {
+	color: #abafb3;
+	text-decoration: none;
+}
+
+#footer a:hover {
+	color: black;
+}
