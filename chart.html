@@ -3,14 +3,11 @@
   <head>
     <link href="css/style_sheet.css" rel='stylesheet' type='text/css'/>
     <link href="css/responsive_style.css" rel='stylesheet' type='text/css'/>
-    <link href="css/chart_style.css" rel='stylesheet' type='text/css'/>
+    <link rel="stylesheet" href="font_awesome/css/font-awesome.min.css">
     <script src="js/utils.js"></script>
-    <script type="text/javascript" src="https://d3js.org/d3.v3.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.js"></script>
     <meta name="viewport" content="width=device-width, user-scalable=no"/>
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <title>University events app</title>
-
-
   </head>
 
   <body onload="addEventListeners()">
@@ -34,28 +31,18 @@
       </li>
     </ul>
 
-
-
-
       <div class="content">
         <div class="introContainer" id="introContainer"><p class="introText">Build a chart showing the number of people who attended these events last year (2016)</p></div>
         <div class="panel-header" id="pheader"><h1>Events role up</h1></div>
         <div class="panel-body">
-
-
           <button id="chartButton" onclick="loadChart()" class="actionButton">Build chart</button>
-
-
-
-
           <div id="content"></div>
-          <div id ="chartID"></div>
-
-
-        </div>
+            <canvas id="myChart" width="400px"height="400px"></canvas>
+          </div>
       </div>
 
-      <div id="footer"><p>Footer text</p>
+      <div id="footer">
+        <p><a href="http://www.exeter.ac.uk/privacy/">Privacy policy</a></p>
       </div>
 
   </body>

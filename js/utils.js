@@ -1,6 +1,4 @@
 
-//Called when the page has loaded
-
 
 var feed = null ;
 
@@ -18,14 +16,12 @@ function addEventListeners()
   getStorageItems();
 }
 
-
-
 function loadEvents()
 {
     var loading = '<span class="fa fa-spinner fa-spin fa-5x" style="padding:40px;"></span>' ;
     document.getElementById("content").innerHTML = loading;
     feed = "events" ;
-    window.setTimeout(loadEventsJSON,2000);
+    window.setTimeout(loadEventsJSON,1000);
 }
 
 function loadChart()
@@ -33,7 +29,7 @@ function loadChart()
     var loading = '<span class="fa fa-spinner fa-spin fa-5x" style="padding:40px;"></span>' ;
     document.getElementById("content").innerHTML = loading;
     feed = "chart" ;
-    window.setTimeout(loadEventsJSON,2000);
+    window.setTimeout(loadEventsJSON,1000);
 }
 
 function loadEventsJSON() {
@@ -45,12 +41,10 @@ function loadEventsJSON() {
         case 200:
         if (feed ==="events")
         {
-
           renderJSON(this);
         }
         else
         {
-
           renderChartJSON(this) ;
         }
         break ;
@@ -93,8 +87,6 @@ function showError($error)
   console.log($error) ;
 }
 
-
-
 //This function appends the responsive class to topNav on click of the mobile menu. This creates the responsive stacked menu
 function showResponsiveMenu()
 {
@@ -108,10 +100,6 @@ function showResponsiveMenu()
         topNav.className = "topnav";
     }
 }
-
-
-//This function appends the responsive class to topNav on click of the mobile menu. This creates the responsive stacked menu
-
 
 
 function changeHeading()
@@ -197,175 +185,66 @@ function getStorageItems()
 
 function renderChartJSON(data)
 {
-  var chartData = new Array() ;
+  var labelArray = new Array() ;
+  var attendedArray = new Array();
   var jsonData = JSON.parse(data.responseText);
   var events = jsonData.data.events;
   for (var i = 0; i < events.length; i++)
   {
-      chartData.push({
-        "event": events[i].name,
-        "attended": events[i].num
-    });
+      labelArray.push(events[i].name) ;
+      attendedArray.push(events[i].num) ;
   }
-  buildChart(chartData) ;
+  buildChart(labelArray, attendedArray) ;
 }
 
 
 
-
-function buildChart(chartData)
+function buildChart(labelArray, attendedArray)
 {
-  console.log(chartData) ;
-  var data = chartData ;
-  var div = d3.select("body").append("div").attr("class", "toolTip");
+  var ctx = document.getElementById("myChart");
+  var data = {
 
-  var margin = {top:10, right:10, bottom:90, left:50};
+                labels: labelArray,
+                datasets:
+                [
+                    {
+                       pointHoverRadius: 12,
+                       //fill: false,
+                       backgroundColor: "rgba(75,132,175,4)",
+                       hoverBackgroundColor: "rgba(75,192,192,1)",
+                      label: 'Attended',
+                      data: attendedArray,
+                  }
+                ]
+              } ;
+          var options = {
+             scales: {
+             yAxes: [{
+                 type: 'linear',
+                 ticks: {
+                     min: 0,
+                     max: 100
+                 }
+             }],
+           },
+                  elements:
+                  {
+                    point:
+                    {
+                      radius: 8,
+                      hitRadius: 20,
+                    }
+                  },
+                  legend:
+                  {
+                    display: true
+                  }
+            }
+              analyticsChart = new Chart(ctx, {
+              type: 'bar',
+              data: data,
+              options: options
 
-  var width = 800 - margin.left - margin.right;
-
-  var height = 600 - margin.top - margin.bottom;
-
-  var xScale = d3.scale.ordinal().rangeRoundBands([0, width], .03)
-
-  var yScale = d3.scale.linear()
-        .range([height, 0]);
-
-
-  var xAxis = d3.svg.axis()
-  		.scale(xScale)
-  		.orient("bottom");
-
-
-  var yAxis = d3.svg.axis()
-  		.scale(yScale)
-  		.orient("left");
-
-  var svgContainer = d3.select("#chartID").append("svg")
-  		.attr("width", width+margin.left + margin.right)
-  		.attr("height",height+margin.top + margin.bottom)
-  		.append("g").attr("class", "container")
-  		.attr("transform", "translate("+ margin.left +","+ margin.top +")");
-
-  xScale.domain(data.map(function(d) { return d.event; }));
-  yScale.domain([0, d3.max(data, function(d) { return d.attended; })]);
-
-
-  //xAxis. To put on the top, swap "(height)" with "-5" in the translate() statement. Then you'll have to change the margins above and the x,y attributes in the svgContainer.select('.x.axis') statement inside resize() below.
-  var xAxis_g = svgContainer.append("g")
-  		.attr("class", "x axis")
-  		.attr("transform", "translate(0," + (height) + ")")
-  		.call(xAxis)
-  		.selectAll("text")
-      .call(wrap, xScale.rangeBand());
-
-  // Uncomment this block if you want the y axis
-  var yAxis_g = svgContainer.append("g")
-  		.attr("class", "y axis")
-  		.call(yAxis)
-  		.append("text")
-  		.attr("transform", "rotate(-90)")
-  		.attr("y", -50).attr("dy", ".71em")
-  		.style("text-anchor", "end").text("Number attended");
-
-
-
-  	svgContainer.selectAll(".bar")
-    		.data(data)
-    		.enter()
-    		.append("rect")
-    		.attr("class", "bar")
-    		.attr("x", function(d) { return xScale(d.event); })
-    		.attr("width", xScale.rangeBand())
-    		.attr("y", function(d) { return yScale(d.attended); })
-    		.attr("height", function(d) { return height - yScale(d.attended); });
-
-
-    // Controls the text labels at the top of each bar. Partially repeated in the resize() function below for responsiveness.
-
-  	svgContainer.selectAll(".text")
-  	  .data(data)
-  	  .enter()
-  	  .append("text")
-  	  .attr("class","label")
-  	  .attr("x", (function(d) { return xScale(d.event) + xScale.rangeBand() / 2 ; }  ))
-  	  .attr("y", function(d) { return yScale(d.attended) + 1; })
-  	  .attr("dy", ".75em")
-  	  .text(function(d) { return d.attended; });
-
-      svgContainer.selectAll(".bar").on("mousemove", function(d){
-          div.style("left", d3.event.pageX+10+"px");
-          div.style("top", d3.event.pageY-25+"px");
-          div.style("display", "inline-block");
-
-          div.html((d.event)+"<br>"+(d.attended));
-        });
-
-      svgContainer.selectAll(".bar").on("mouseout", function(d){
-          div.style("display", "none");
-      });
-
-
-
-      document.getElementById('content').innerHTML = "" ;
-
-
-document.addEventListener("DOMContentLoaded", resize);
-d3.select(window).on('resize', resize);
-
-function resize() {
-	console.log('----resize function----');
-  // update width
-  width = parseInt(d3.select('#chartID').style('width'), 10);
-  width = width - margin.left - margin.right;
-
-  height = parseInt(d3.select("#chartID").style("height"));
-  height = height - margin.top - margin.bottom;
-	console.log('----resiz width----'+width);
-	console.log('----resiz height----'+height);
-  // resize the chart
-
-    xScale.range([0, width]);
-    xScale.rangeRoundBands([0, width], .03);
-    yScale.range([height, 0]);
-
-    yAxis.ticks(Math.max(height/50, 2));
-    xAxis.ticks(Math.max(width/50, 2));
-
-    d3.select(svgContainer.node().parentNode)
-        .style('width', (width + margin.left + margin.right) + 'px');
-
-    svgContainer.selectAll('.bar')
-    	.attr("x", function(d) { return xScale(d.event); })
-      .attr("width", xScale.rangeBand());
-
-
-
-    svgContainer.select('.x.axis').call(xAxis.orient('bottom')).selectAll("text").attr("y",10).call(wrap, xScale.rangeBand());
-}
-
-}
-
-
-function wrap(text, width) {
-  text.each(function() {
-    var text = d3.select(this),
-        words = text.text().split(/\s+/).reverse(),
-        word,
-        line = [],
-        lineNumber = 0,
-        lineHeight = 1.1, // ems
-        y = text.attr("y"),
-        dy = parseFloat(text.attr("dy")),
-        tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dy", dy + "em");
-    while (word = words.pop()) {
-      line.push(word);
-      tspan.text(line.join(" "));
-      if (tspan.node().getComputedTextLength() > width) {
-        line.pop();
-        tspan.text(line.join(" "));
-        line = [word];
-        tspan = text.append("tspan").attr("x", 0).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
-      }
-    }
-  });
+              });
+              document.getElementById("content").innerHTML = "";
 }
