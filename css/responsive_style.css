@@ -2,10 +2,6 @@
 /* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens */
 @media screen and (max-width:680px) {
 
-	body{
-		width: 95% ;
-	}
-
 	.topnav li {
 		display: none;
 	}
